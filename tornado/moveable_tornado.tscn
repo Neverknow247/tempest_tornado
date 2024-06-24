@@ -1,0 +1,191 @@
+[gd_scene load_steps=19 format=3 uid="uid://df1ka6jbq3af1"]
+
+[ext_resource type="Script" path="res://tornado/moveable_tornado.gd" id="1_8nvdn"]
+[ext_resource type="Texture2D" uid="uid://ccmv6s7x5yw0i" path="res://assets/particle_sprite_smoke.webp" id="2_tqcmk"]
+[ext_resource type="Shader" path="res://assets/shaders/crt.gdshader" id="3_70u3j"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_cl434"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qv8wm"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7ihty"]
+height = 10.0
+radius = 15.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_5f1qy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_krm67"]
+shader = ExtResource("3_70u3j")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = false
+shader_parameter/roll_speed = 0.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.0
+shader_parameter/noise_speed = 0.0
+shader_parameter/static_noise_intensity = 0.0
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/vignette_opacity = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1nasi"]
+shader = ExtResource("3_70u3j")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = -8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="Curve" id="Curve_cmfr2"]
+_data = [Vector2(0.00724638, 0), 0.0, 0.0, 0, 0, Vector2(0.057971, 1), 0.0, 0.0, 0, 0, Vector2(0.855072, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_awb63"]
+curve = SubResource("Curve_cmfr2")
+
+[sub_resource type="Gradient" id="Gradient_8itie"]
+offsets = PackedFloat32Array(0, 0.590909, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.581033, 0.581033, 0.581033, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p0uov"]
+gradient = SubResource("Gradient_8itie")
+
+[sub_resource type="Curve" id="Curve_ayvu2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vgpl7"]
+curve = SubResource("Curve_ayvu2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8nla0"]
+particle_flag_rotate_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 15.0
+initial_velocity_max = 20.0
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -10.0
+radial_accel_max = -5.0
+tangential_accel_min = 20.0
+tangential_accel_max = 40.0
+damping_min = 5.0
+damping_max = 10.0
+attractor_interaction_enabled = false
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_vgpl7")
+color_ramp = SubResource("GradientTexture1D_p0uov")
+alpha_curve = SubResource("CurveTexture_awb63")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bh23m"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_tqcmk")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 8
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_a88em"]
+material = SubResource("StandardMaterial3D_bh23m")
+
+[node name="moveable_tornado" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_8nvdn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_cl434")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_qv8wm")
+
+[node name="enter_area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.70205, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enter_area"]
+shape = SubResource("CylinderShape3D_7ihty")
+
+[node name="attraction_point" type="Node3D" parent="enter_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enter_area/attraction_point"]
+visible = false
+mesh = SubResource("SphereMesh_5f1qy")
+
+[node name="Camera_Controller" type="Node3D" parent="."]
+top_level = true
+
+[node name="Camera_Target" type="Node3D" parent="Camera_Controller"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 20, 20)
+
+[node name="Camera3D" type="Camera3D" parent="Camera_Controller/Camera_Target"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera_Controller/Camera_Target/Camera3D"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Camera_Controller/Camera_Target/Camera3D/CanvasLayer"]
+material = SubResource("ShaderMaterial_krm67")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Camera_Controller/Camera_Target/Camera3D/CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_1nasi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.15742, 0)
+amount = 1000
+lifetime = 2.0
+preprocess = 5.0
+process_material = SubResource("ParticleProcessMaterial_8nla0")
+draw_pass_1 = SubResource("QuadMesh_a88em")
+
+[connection signal="body_entered" from="enter_area" to="." method="_on_enter_area_body_entered"]
+[connection signal="body_exited" from="enter_area" to="." method="_on_enter_area_body_exited"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc2fii7wamob1"]
+
+[ext_resource type="AudioStream" uid="uid://cc1hc12dhr78o" path="res://assets/sfx/tornado.wav" id="1_eaahg"]
+[ext_resource type="Script" path="res://singletons/sounds.gd" id="1_ka8nh"]
+
+[node name="Sounds" type="Node"]
+process_mode = 3
+script = ExtResource("1_ka8nh")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0
+bus = &"Music"
+
+[node name="voice" type="AudioStreamPlayer" parent="."]
+bus = &"Voice"
+
+[node name="sfx" type="Node" parent="."]
+
+[node name="sfx_1" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("1_eaahg")
+volume_db = -15.0
+autoplay = true
+bus = &"SFX"
+
+[node name="sfx_2" type="AudioStreamPlayer" parent="sfx"]
+bus = &"SFX"
+
+[node name="sfx_3" type="AudioStreamPlayer" parent="sfx"]
+bus = &"SFX"
+
+[node name="sfx_4" type="AudioStreamPlayer" parent="sfx"]
+bus = &"SFX"
+
+[node name="sfx_5" type="AudioStreamPlayer" parent="sfx"]
+bus = &"SFX"
+
+[node name="sfx_6" type="AudioStreamPlayer" parent="sfx"]
+bus = &"SFX"
+
+[node name="sfx_7" type="AudioStreamPlayer" parent="sfx"]
+bus = &"SFX"
+
+[node name="sfx_8" type="AudioStreamPlayer" parent="sfx"]
+bus = &"SFX"
+
+[node name="sfx_9" type="AudioStreamPlayer" parent="sfx"]
+bus = &"SFX"
+
+[node name="sfx_10" type="AudioStreamPlayer" parent="sfx"]
+bus = &"SFX"

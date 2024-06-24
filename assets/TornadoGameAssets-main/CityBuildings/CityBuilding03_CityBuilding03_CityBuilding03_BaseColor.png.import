@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bmeb3sul04d41"
+path.s3tc="res://.godot/imported/CityBuilding03_CityBuilding03_CityBuilding03_BaseColor.png-510a7d81ec05fb184256db875bfdd87b.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "e61eb72e6fc9d225ee0de7f69cd8aabb"
+}
+
+[deps]
+
+source_file="res://assets/TornadoGameAssets-main/CityBuildings/CityBuilding03_CityBuilding03_CityBuilding03_BaseColor.png"
+dest_files=["res://.godot/imported/CityBuilding03_CityBuilding03_CityBuilding03_BaseColor.png-510a7d81ec05fb184256db875bfdd87b.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

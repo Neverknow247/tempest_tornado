@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://1bygd30c6mvr"]
+
+[ext_resource type="Script" path="res://menus/menu_background.gd" id="1_8n50u"]
+[ext_resource type="Texture2D" uid="uid://chco4on42vfvb" path="res://assets/art/backgrounds/menu_1.png" id="1_qja48"]
+
+[sub_resource type="Animation" id="Animation_jvy64"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nr1fx"]
+resource_name = "animate"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -960)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nptnb"]
+_data = {
+"RESET": SubResource("Animation_jvy64"),
+"animate": SubResource("Animation_nr1fx")
+}
+
+[node name="menu_background" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_8n50u")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 2112.0
+texture = ExtResource("1_qja48")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.219608)
+
+[node name="scroll_animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nptnb")
+}
+autoplay = "animate"
